@@ -1,2 +1,5 @@
+# For VS-Code
+.vscode
+
 # For Haskell
 .stack-work

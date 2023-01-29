@@ -20,4 +20,5 @@ Required parsers:
 - Can process multiple files at once
 
 ## Further info
-- Use TDD whereever possible
+- Use TDD whereever possible (but give TCR a shot first, just for the fun of it)
+- Check how to write commits so a CHANGELOG could be generated
