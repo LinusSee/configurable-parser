@@ -3,3 +3,6 @@
 
 # For Haskell
 .stack-work
+
+# For Python
+__pycache__
