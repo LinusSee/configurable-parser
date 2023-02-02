@@ -1,9 +1,13 @@
 from src.orchestration import parseText
 
+multilineStringWindows = 'Loglevel: \r\nLoglevel: \r\nLoglevel: '
 
 def main():
-    result = parseText('Loglevel: asdf')
+    result = parseText('Loglevel: ')
     print(result)
 
-if __name__ == "__main__":
+    result2 = parseText(multilineStringWindows)
+    print(result2)
+
+if __name__ == '__main__':
     main()
