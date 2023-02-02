@@ -1,3 +1,9 @@
-from src.given_parser import printHelloWorld
+from src.orchestration import parseText
 
-printHelloWorld()
+
+def main():
+    result = parseText('Loglevel: asdf')
+    print(result)
+
+if __name__ == "__main__":
+    main()
