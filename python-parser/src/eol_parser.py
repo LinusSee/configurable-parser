@@ -1,7 +1,7 @@
 import parsec as parsec
 
 
-def __matchEol():
+def __match_eol():
     windowsLineEndingParser = parsec.string('\r\n')
     unixLineEndingParser = parsec.string('\n')
 
@@ -9,6 +9,6 @@ def __matchEol():
                         , unixLineEndingParser
                         )
 
-eolParser = __matchEol()
+eol_parser = __match_eol()
 
-eolOrEofParser = parsec.try_choice(eolParser, parsec.eof())
+eol_or_eof_parser = parsec.try_choice(eol_parser, parsec.eof())

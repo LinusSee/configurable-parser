@@ -1,24 +1,15 @@
 import unittest
 
+import test.test_utils as test_utils
 import src.orchestration as OC
-
-
-def remove_eol_column(actual: list[(any)]):
-    ''' Remove the last field of each row containing eol/eof.
-        It only causes the tests to break if the structure of the tuple changes
-        without adding any value.
-    '''
-    removal_fn = lambda row: row[0]
-
-    return list(map(removal_fn, actual))
 
 
 
 class GivenParserTest(unittest.TestCase):
     def test_matchesString_Loglevel_AndHasHeader_IntroString(self):
         expected = [('IntroString', 'Loglevel: ')]
-        result = OC.parseText('Loglevel: ')
-        actual = remove_eol_column(result)
+        result = OC.parse_text('Loglevel: ')
+        actual = test_utils.remove_eol_eof_column(result)
 
         self.assertEqual(expected, actual)
 
@@ -28,8 +19,8 @@ class GivenParserTest(unittest.TestCase):
                     ('IntroString', 'Loglevel: '),
                     ('IntroString', 'Loglevel: ')
                     ]
-        result = OC.parseText('Loglevel: \r\nLoglevel: \r\nLoglevel: ')
-        actual = remove_eol_column(result)
+        result = OC.parse_text('Loglevel: \r\nLoglevel: \r\nLoglevel: ')
+        actual = test_utils.remove_eol_eof_column(result)
 
         self.assertEqual(expected, actual)
 
@@ -38,8 +29,8 @@ class GivenParserTest(unittest.TestCase):
                     ('IntroString', 'Loglevel: '),
                     ('IntroString', 'Loglevel: ')
                     ]
-        result = OC.parseText('Loglevel: \nLoglevel: \nLoglevel: ')
-        actual = remove_eol_column(result)
+        result = OC.parse_text('Loglevel: \nLoglevel: \nLoglevel: ')
+        actual = test_utils.remove_eol_eof_column(result)
 
         self.assertEqual(expected, actual)
 

@@ -1,6 +1,6 @@
 import parsec as parsec
 
-def matchString(expectedString, header):
+def match_string(expectedString, header):
     parser = parsec.string(expectedString)
     parserMap = parsec.parsecmap(parser, lambda parsedValue : (header, parsedValue))
 
