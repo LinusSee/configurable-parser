@@ -3,6 +3,7 @@ import os as os
 
 import test.test_utils as test_utils
 import src.orchestration as OC
+import src.given_parser as GivenParser
 
 
 
@@ -17,7 +18,8 @@ class OrchestrationTest(unittest.TestCase):
                     ]
 
         target_path = testfiles_basepath + '\\basic-multiline.txt'
-        result = OC.parse_file(target_path)
+        given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
+        result = OC.parse_file(target_path, [given_parser])
         actual = test_utils.remove_eol_eof_column(result)
 
         self.assertEqual(expected, actual)
