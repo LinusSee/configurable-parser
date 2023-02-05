@@ -1,7 +1,7 @@
 import parsec as parsec
 
-import src.given_parser as GivenParser
-import src.eol_parser as EolParser
+import src.business_logic.given_parser as GivenParser
+import src.business_logic.eol_parser as EolParser
 
 
 

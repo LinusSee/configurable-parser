@@ -1,8 +1,8 @@
 import unittest
 
 import test.test_utils as test_utils
-import src.orchestration as OC
-import src.given_parser as GivenParser
+import src.business_logic.api.parsing as Parsing
+import src.business_logic.given_parser as GivenParser
 
 
 
@@ -11,7 +11,7 @@ class GivenParserTest(unittest.TestCase):
         expected = [('IntroString', 'Loglevel: ')]
 
         given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
-        result = OC.parse_text('Loglevel: ', [given_parser])
+        result = Parsing.parse_text('Loglevel: ', [given_parser])
         actual = test_utils.remove_eol_eof_column(result)
 
         self.assertEqual(expected, actual)
@@ -24,7 +24,7 @@ class GivenParserTest(unittest.TestCase):
                     ]
         
         given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
-        result = OC.parse_text('Loglevel: \r\nLoglevel: \r\nLoglevel: ', [given_parser])
+        result = Parsing.parse_text('Loglevel: \r\nLoglevel: \r\nLoglevel: ', [given_parser])
         actual = test_utils.remove_eol_eof_column(result)
 
         self.assertEqual(expected, actual)
@@ -36,7 +36,7 @@ class GivenParserTest(unittest.TestCase):
                     ]
         
         given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
-        result = OC.parse_text('Loglevel: \nLoglevel: \nLoglevel: ', [given_parser])
+        result = Parsing.parse_text('Loglevel: \nLoglevel: \nLoglevel: ', [given_parser])
         actual = test_utils.remove_eol_eof_column(result)
 
         self.assertEqual(expected, actual)

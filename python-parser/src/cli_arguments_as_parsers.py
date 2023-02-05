@@ -1,8 +1,18 @@
-import src.given_parser as GivenParser
+import src.business_logic.parsing_config as ParsingConfig
+
+import src.business_logic.given_parser as GivenParser
 
 
 
-def map_cli_arguments_to_parsers(cli_arguments):
+def config_from_parsed_cli_arguments(parsed_arguments):
+    input_filename = parsed_arguments.input_file
+    parser_configs = __map_cli_arguments_to_parsers([parsed_arguments.parser_string])
+
+    return ParsingConfig.ParsingConfig(input_filename, parser_configs)
+
+
+
+def __map_cli_arguments_to_parsers(cli_arguments):
     return list(map(__map_cli_argument_to_parser, cli_arguments))
 
 
