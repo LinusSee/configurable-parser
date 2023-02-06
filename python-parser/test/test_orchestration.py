@@ -3,7 +3,8 @@ import os as os
 
 import test.test_utils as test_utils
 
-import src.business_logic.api.parsing as Parsing
+import src.business_logic.parsing_config as ParsingConfig
+import src.orchestration.orchestration as OC
 import src.business_logic.given_parser as GivenParser
 
 
@@ -21,7 +22,9 @@ class OrchestrationTest(unittest.TestCase):
         target_path = testfiles_basepath + '\\basic-multiline.txt'
         given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
 
-        result = Parsing.parse_file(target_path, [given_parser])
+        parsing_config = ParsingConfig.ParsingConfig(target_path, [given_parser])
+        result = OC.parse_file(parsing_config)
         actual = test_utils.remove_eol_eof_column(result)
 
         self.assertEqual(expected, actual)
+        # TODO: Assert CSV File (#14)
