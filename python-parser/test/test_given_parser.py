@@ -7,8 +7,10 @@ import src.business_logic.given_parser as GivenParser
 
 
 class GivenParserTest(unittest.TestCase):
+
+
     def test_matchesString_Loglevel_AndHasHeader_IntroString(self):
-        expected = [('IntroString', 'Loglevel: ')]
+        expected = [(('IntroString', 'Loglevel: '),)]
 
         given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
 
@@ -19,9 +21,9 @@ class GivenParserTest(unittest.TestCase):
 
 
     def test_matchesString_MultipleTimesWithWindowsStyleNewlines(self):
-        expected = [('IntroString', 'Loglevel: '),
-                    ('IntroString', 'Loglevel: '),
-                    ('IntroString', 'Loglevel: ')
+        expected = [(('IntroString', 'Loglevel: '),),
+                    (('IntroString', 'Loglevel: '),),
+                    (('IntroString', 'Loglevel: '),)
                     ]
         
         given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
@@ -32,9 +34,9 @@ class GivenParserTest(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_matchesString_MultipleTimesWithUnixStyleNewlines(self):
-        expected = [('IntroString', 'Loglevel: '),
-                    ('IntroString', 'Loglevel: '),
-                    ('IntroString', 'Loglevel: ')
+        expected = [(('IntroString', 'Loglevel: '),),
+                    (('IntroString', 'Loglevel: '),),
+                    (('IntroString', 'Loglevel: '),)
                     ]
         
         given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')

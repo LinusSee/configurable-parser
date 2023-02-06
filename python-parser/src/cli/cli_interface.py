@@ -9,6 +9,10 @@ def __create_parser():
                         required=True,
                         help='The path to the file that should be parsed.')
 
+    parser.add_argument('--output-file',
+                        required=True,
+                        help='The path of the file where the result should be written to.')
+
     parser.add_argument('--parser-string',
                         nargs=2,
                         metavar=('<header-name>', '<target-string>'),

@@ -6,9 +6,10 @@ import src.business_logic.given_parser as GivenParser
 
 def config_from_parsed_cli_arguments(parsed_arguments):
     input_filename = parsed_arguments.input_file
+    output_filename = parsed_arguments.output_file
     parser_configs = __map_cli_arguments_to_parsers([parsed_arguments.parser_string])
 
-    return ParsingConfig.ParsingConfig(input_filename, parser_configs)
+    return ParsingConfig.ParsingConfig(input_filename, output_filename, parser_configs)
 
 
 
