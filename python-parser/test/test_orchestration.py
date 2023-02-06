@@ -2,6 +2,7 @@ import unittest
 import os as os
 
 import test.test_utils as test_utils
+
 import src.business_logic.api.parsing as Parsing
 import src.business_logic.given_parser as GivenParser
 
@@ -19,6 +20,7 @@ class OrchestrationTest(unittest.TestCase):
 
         target_path = testfiles_basepath + '\\basic-multiline.txt'
         given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
+
         result = Parsing.parse_file(target_path, [given_parser])
         actual = test_utils.remove_eol_eof_column(result)
 
