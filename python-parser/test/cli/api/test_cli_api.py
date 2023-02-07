@@ -18,7 +18,7 @@ class CliApiTest(unittest.TestCase):
 
     def test_input_file_parameter_is_required(self):
         cli_arguments = ['--output-file', testfiles_basepath + '\\results\\does-not-matter.csv',
-                        '--parser-string', 'IntroString', 'Loglevel: ']
+                        '--parser-string', '1', 'IntroString', 'Loglevel: ']
         
         with self.assertRaises(SystemExit):
             CliApi.parse_with_arguments(cli_arguments)
@@ -26,7 +26,7 @@ class CliApiTest(unittest.TestCase):
 
     def test_output_file_parameter_is_required(self):
         cli_arguments = ['--input-file', testfiles_basepath + '\\does-not-matter.txt',
-                        '--parser-string', 'IntroString', 'Loglevel: ']
+                        '--parser-string', '1', 'IntroString', 'Loglevel: ']
         
         with self.assertRaises(SystemExit):
             CliApi.parse_with_arguments(cli_arguments)
@@ -50,7 +50,26 @@ class CliApiTest(unittest.TestCase):
         output_file = testfiles_basepath + '\\results\\parsing-result.csv'
         cli_arguments = ['--input-file', testfiles_basepath + '\\basic-multiline.txt',
                         '--output-file', output_file,
-                        '--parser-string', 'IntroString', 'Loglevel: ']
+                        '--parser-string', '1', 'IntroString', 'Loglevel: ']
+
+        result = CliApi.parse_with_arguments(cli_arguments)
+        actual = test_utils.remove_eol_eof_column(result)
+
+        self.assertEqual(expected, actual)
+        self.assertEqual(expected, test_utils.read_csv_as_parsing_data(output_file))
+
+    
+
+    def test_a_parser_configured_multiple_times_is_applied_in_the_correct_order(self):
+        expected = [(('IntroString', 'Loglevel: '), ('TestColumn', 'Test')),
+                    (('IntroString', 'Loglevel: '), ('TestColumn', 'Test'))
+                    ]
+
+        output_file = testfiles_basepath + '\\results\\parsing-result.csv'
+        cli_arguments = ['--input-file', testfiles_basepath + '\\basic-multiline-two-values.txt',
+                        '--output-file', output_file,
+                        '--parser-string', '2', 'TestColumn', 'Test',
+                        '--parser-string', '1', 'IntroString', 'Loglevel: ']
 
         result = CliApi.parse_with_arguments(cli_arguments)
         actual = test_utils.remove_eol_eof_column(result)

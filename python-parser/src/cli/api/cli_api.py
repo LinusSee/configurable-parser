@@ -9,6 +9,7 @@ def parse_with_arguments(cli_arguments):
     print(cli_arguments)
     # Apply interface and according validation
     parsed_arguments = ArgumentInterface.parse_arguments(cli_arguments)
+    print("Parsed args: ", parsed_arguments)
 
     # Map to business model
     parsing_config = ArgumentMapping.config_from_parsed_cli_arguments(parsed_arguments)

@@ -14,8 +14,9 @@ def __create_parser():
                         help='The path of the file where the result should be written to.')
 
     parser.add_argument('--parser-string',
-                        nargs=2,
-                        metavar=('<header-name>', '<target-string>'),
+                        nargs=3,
+                        action='append',
+                        metavar=('<parser-position>', '<header-name>', '<target-string>'),
                         help='A string to match and the header value for the result.')
 
     return parser

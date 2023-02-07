@@ -17,9 +17,14 @@ def parse_file(filename, parser_configs):
 
 
 def parse_text(text, parser_configs):
-    string_parser = GivenParser.match_string(parser_configs[0].target_string, parser_configs[0].header)
-    string_and_eol_parser = parsec.joint(string_parser, EolParser.eol_or_eof_parser)
+    parsers = list(map(__parser_config_as_parser, parser_configs))
+    joint_parsers_with_eol = parsec.joint(*parsers, EolParser.eol_or_eof_parser)
 
-    final_parser = parsec.many(string_and_eol_parser)
+    final_parser = parsec.many(joint_parsers_with_eol)
 
     return parsec.parse(final_parser, text, 0)
+
+
+
+def __parser_config_as_parser(parser_config):
+    return GivenParser.match_string(parser_config.target_string, parser_config.header)

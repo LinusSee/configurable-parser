@@ -26,15 +26,18 @@ class OrchestrationTest(unittest.TestCase):
 
 
     def test_file_is_being_read_and_parsed(self):
-        expected = [(('IntroString', 'Loglevel: '),),
-                    (('IntroString', 'Loglevel: '),)
+        expected = [(('IntroString', 'Loglevel: '), ('TestColumn', 'Test')),
+                    (('IntroString', 'Loglevel: '), ('TestColumn', 'Test'))
                     ]
 
-        input_file = input_files_basepath + '\\basic-multiline.txt'
+        input_file = input_files_basepath + '\\basic-multiline-two-values.txt'
         output_file = output_files_basepath + '\\parsing-result.csv'
-        given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
 
-        parsing_config = ParsingConfig.ParsingConfig(input_file, output_file, [given_parser])
+        given_parser_loglevel = GivenParser.GivenParser('IntroString', 'Loglevel: ')
+        given_parser_test = GivenParser.GivenParser('TestColumn', 'Test')
+        parsers = [given_parser_loglevel, given_parser_test]
+
+        parsing_config = ParsingConfig.ParsingConfig(input_file, output_file, parsers)
         result = OC.parse_file(parsing_config)
         actual = test_utils.remove_eol_eof_column(result)
 
