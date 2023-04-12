@@ -33,6 +33,7 @@ class GivenParserTest(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
+
     def test_matchesString_MultipleTimesWithUnixStyleNewlines(self):
         expected = [(('IntroString', 'Loglevel: '),),
                     (('IntroString', 'Loglevel: '),),

@@ -12,7 +12,7 @@ def match_string(expectedString, header):
 
 class GivenParser:
     def __init__(self, header, target_string):
-        self.parserType = 'GivenParser'
+        self.parser_type = 'GivenParser'
         self.header = header
         self.target_string = target_string
 

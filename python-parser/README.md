@@ -1,5 +1,17 @@
 # Python Parser
 
+## Quick start
+### Running the project
+For a quick start with the example files run
+```
+python main.py --input-file sample-data/basic-multiline-two-values.txt --output-file result.csv --parser-string 1 "IntroString" "Loglevel: " --parser-string 2 "TestColumn" "Test"
+```
+and view the resulting `result.csv`. 
+
+### Running the tests
+Run `python -m unittest discover -v` to execute the tests.
+
+
 ## Usage
 To run the parser you need to configure 3 things:
 

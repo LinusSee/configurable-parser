@@ -18,6 +18,12 @@ def __create_parser():
                         action='append',
                         metavar=('<parser-position>', '<header-name>', '<target-string>'),
                         help='A string to match and the header value for the result.')
+    
+    parser.add_argument('--parser-until-end',
+                        help='''Parses the rest of the line. The parameter requires the name of this parser.
+                            \nThis parser can not be present more than once.
+                            \nIt will always be the last parser to be executed.'''
+                        )
 
     return parser
 
