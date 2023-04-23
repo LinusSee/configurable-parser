@@ -68,15 +68,16 @@ class CliApiTest(unittest.TestCase):
 
     
     def test_applies_configured_parsers(self):
-        expected = [(('IntroString', 'Loglevel: '), ('ItsTheEndOfTheLine', 'someLineEndToMatch')),
-                    (('IntroString', 'Loglevel: '), ('ItsTheEndOfTheLine', 'another line end but with multiple words'))
+        expected = [(('IntroString', 'Loglevel: '), ('Loglevel', 'ERROR'), ('ItsTheEndOfTheLine', ' someLineEndToMatch')),
+                    (('IntroString', 'Loglevel: '), ('Loglevel', 'INCIDENT'), ('ItsTheEndOfTheLine', ' another line end but with multiple words'))
                     ]
 
         output_file = testfiles_basepath + '\\results\\parsing-result.csv'
         cli_arguments = ['--input-file', testfiles_basepath + '\\basic-multiline.txt',
                         '--output-file', output_file,
-                        '--parser-string', '1', 'IntroString', 'Loglevel: ']
-        cli_arguments = cli_arguments + ['--parser-until-end', 'ItsTheEndOfTheLine']
+                        '--parser-string', '1', 'IntroString', 'Loglevel: ',
+                        '--parser-one-of', '2', 'Loglevel', 'INFO,INCIDENT,ERROR',
+                        '--parser-until-end', 'ItsTheEndOfTheLine']
 
         result = CliApi.parse_with_arguments(cli_arguments)
         actual = test_utils.remove_eol_eof_column(result)

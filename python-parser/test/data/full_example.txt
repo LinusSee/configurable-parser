@@ -1,2 +1,2 @@
-Loglevel: Testthis is the end
-Loglevel: Testyou know
+Loglevel: INFOTestthis is the end
+Loglevel: INCIDENTTestyou know

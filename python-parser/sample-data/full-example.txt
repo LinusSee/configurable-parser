@@ -1,0 +1,3 @@
+Loglevel: INFO endOfTheLine
+Loglevel: INCIDENT stuff
+Loglevel: ERROR foo bar

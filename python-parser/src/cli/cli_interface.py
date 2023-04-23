@@ -24,6 +24,16 @@ def __create_parser():
                             \nThis parser can not be present more than once.
                             \nIt will always be the last parser to be executed.'''
                         )
+    
+    parser.add_argument('--parser-one-of',
+                        nargs=3,
+                        action='append',
+                        metavar=('<parser-position>', '<header-name>', '<target-values>'),
+                        help='''A comma separated list of values to match and the header value for the result.
+                                Spaces after the comma will be treated as part of the oneOf string e.g.
+                                    'INFO, INCIDENT,ERROR' becomes ['INFO', ' INCIDENT', 'ERROR']
+                                For now this prevents commas to be part of a oneOf string.
+                            ''')
 
     return parser
 

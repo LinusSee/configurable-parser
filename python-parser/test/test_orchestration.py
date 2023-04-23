@@ -8,6 +8,7 @@ import src.business_logic.parsing_config as ParsingConfig
 import src.orchestration.orchestration as OC
 import src.business_logic.given_parser as GivenParser
 import src.business_logic.until_end_parser as UntilEndParser
+import src.business_logic.one_of_parser as OneOfParser
 
 
 
@@ -48,17 +49,18 @@ class OrchestrationTest(unittest.TestCase):
     
 
     def test_can_parse_full_example(self):
-        expected = [(('IntroString', 'Loglevel: '), ('TestColumn', 'Test'), ('ItsTheEndOfTheLine', 'this is the end')),
-                    (('IntroString', 'Loglevel: '), ('TestColumn', 'Test'), ('ItsTheEndOfTheLine', 'you know'))
+        expected = [(('IntroString', 'Loglevel: '), ('Loglevel', 'INFO'), ('TestColumn', 'Test'), ('ItsTheEndOfTheLine', 'this is the end')),
+                    (('IntroString', 'Loglevel: '), ('Loglevel', 'INCIDENT'), ('TestColumn', 'Test'), ('ItsTheEndOfTheLine', 'you know'))
                     ]
         
         input_file = input_files_basepath + '\\full_example.txt'
         output_file = output_files_basepath + '\\parsing-result.csv'
 
         given_parser_loglevel = GivenParser.GivenParser('IntroString', 'Loglevel: ')
+        one_of_parser = OneOfParser.OneOfParser('Loglevel', ['INFO', 'INCIDENT'])
         given_parser_test = GivenParser.GivenParser('TestColumn', 'Test')
         until_end_parser = UntilEndParser.UntilEndParser('ItsTheEndOfTheLine')
-        parsers = [given_parser_loglevel, given_parser_test, until_end_parser]
+        parsers = [given_parser_loglevel, one_of_parser, given_parser_test, until_end_parser]
 
         parsing_config = ParsingConfig.ParsingConfig(input_file, output_file, parsers)
         result = OC.parse_file(parsing_config)

@@ -4,7 +4,7 @@ import parsec as parsec
 
 def match_string(expectedString, header):
     parser = parsec.string(expectedString)
-    parserMap = parsec.parsecmap(parser, lambda parsedValue : (header, parsedValue))
+    parserMap = parsec.parsecmap(parser, lambda parsed_value: (header, parsed_value))
 
     return parserMap
 
