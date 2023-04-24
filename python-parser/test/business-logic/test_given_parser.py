@@ -14,8 +14,7 @@ class GivenParserTest(unittest.TestCase):
 
         given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
 
-        result = Parsing.parse_text('Loglevel: ', [given_parser])
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = Parsing.parse_text('Loglevel: ', [given_parser])
 
         self.assertEqual(expected, actual)
 
@@ -28,8 +27,7 @@ class GivenParserTest(unittest.TestCase):
         
         given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
 
-        result = Parsing.parse_text('Loglevel: \r\nLoglevel: \r\nLoglevel: ', [given_parser])
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = Parsing.parse_text('Loglevel: \r\nLoglevel: \r\nLoglevel: ', [given_parser])
 
         self.assertEqual(expected, actual)
 
@@ -42,8 +40,7 @@ class GivenParserTest(unittest.TestCase):
         
         given_parser = GivenParser.GivenParser('IntroString', 'Loglevel: ')
 
-        result = Parsing.parse_text('Loglevel: \nLoglevel: \nLoglevel: ', [given_parser])
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = Parsing.parse_text('Loglevel: \nLoglevel: \nLoglevel: ', [given_parser])
 
         self.assertEqual(expected, actual)
 

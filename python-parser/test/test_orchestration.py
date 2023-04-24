@@ -23,7 +23,8 @@ class OrchestrationTest(unittest.TestCase):
 
     def tearDown(self):
         # Delete result directory including all files created
-        shutil.rmtree(output_files_basepath)
+        # shutil.rmtree(output_files_basepath)
+        pass
 
 
 
@@ -40,8 +41,7 @@ class OrchestrationTest(unittest.TestCase):
         parsers = [given_parser_loglevel, given_parser_test]
 
         parsing_config = ParsingConfig.ParsingConfig(input_file, output_file, parsers)
-        result = OC.parse_file(parsing_config)
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = OC.parse_file(parsing_config)
 
         self.assertEqual(expected, actual)
         self.assertEqual(expected, test_utils.read_csv_as_parsing_data(output_file))
@@ -63,8 +63,7 @@ class OrchestrationTest(unittest.TestCase):
         parsers = [given_parser_loglevel, one_of_parser, given_parser_test, until_end_parser]
 
         parsing_config = ParsingConfig.ParsingConfig(input_file, output_file, parsers)
-        result = OC.parse_file(parsing_config)
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = OC.parse_file(parsing_config)
 
         self.assertEqual(expected, actual)
         self.assertEqual(expected, test_utils.read_csv_as_parsing_data(output_file))

@@ -13,8 +13,7 @@ class GivenParserTest(unittest.TestCase):
 
         one_of_parser = OneOfParser.OneOfParser('Loglevel', ['INFO', 'INCIDENT', 'ERROR'])
 
-        result = Parsing.parse_text('INFO', [one_of_parser])
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = Parsing.parse_text('INFO', [one_of_parser])
 
         self.assertEqual(expected, actual)
 
@@ -27,7 +26,6 @@ class GivenParserTest(unittest.TestCase):
 
         one_of_parser = OneOfParser.OneOfParser('Loglevel', ['INFO', 'INCIDENT', 'ERROR'])
 
-        result = Parsing.parse_text('INFO\nINCIDENT\nERROR', [one_of_parser])
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = Parsing.parse_text('INFO\nINCIDENT\nERROR', [one_of_parser])
 
         self.assertEqual(expected, actual)

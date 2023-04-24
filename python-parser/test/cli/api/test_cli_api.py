@@ -60,8 +60,7 @@ class CliApiTest(unittest.TestCase):
                         '--parser-string', '2', 'TestColumn', 'Test',
                         '--parser-string', '1', 'IntroString', 'Loglevel: ']
 
-        result = CliApi.parse_with_arguments(cli_arguments)
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = CliApi.parse_with_arguments(cli_arguments)
 
         self.assertEqual(expected, actual)
         self.assertEqual(expected, test_utils.read_csv_as_parsing_data(output_file))
@@ -79,8 +78,7 @@ class CliApiTest(unittest.TestCase):
                         '--parser-one-of', '2', 'Loglevel', 'INFO,INCIDENT,ERROR',
                         '--parser-until-end', 'ItsTheEndOfTheLine']
 
-        result = CliApi.parse_with_arguments(cli_arguments)
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = CliApi.parse_with_arguments(cli_arguments)
 
         self.assertEqual(expected, actual)
         self.assertEqual(expected, test_utils.read_csv_as_parsing_data(output_file))

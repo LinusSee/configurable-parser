@@ -20,7 +20,7 @@ def parse_file(filename, parser_configs):
 
 def parse_text(text, parser_configs):
     parsers = list(map(__parser_config_as_parser, parser_configs))
-    joint_parsers_with_eol = parsec.joint(*parsers, EolParser.eol_or_eof_parser)
+    joint_parsers_with_eol = parsec.joint(*parsers).skip(EolParser.eol_or_eof_parser)
 
     final_parser = parsec.many(joint_parsers_with_eol)
 

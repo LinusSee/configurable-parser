@@ -12,8 +12,7 @@ class GivenParserTest(unittest.TestCase):
 
         until_end_parser = UntilEndParser.UntilEndParser('ItsTheEndOfTheLine')
 
-        result = Parsing.parse_text('just some line ending\n', [until_end_parser])
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = Parsing.parse_text('just some line ending\n', [until_end_parser])
 
         self.assertEqual(expected, actual)
 
@@ -26,8 +25,7 @@ class GivenParserTest(unittest.TestCase):
 
         until_end_parser = UntilEndParser.UntilEndParser('ItsTheEndOfTheLine')
 
-        result = Parsing.parse_text('just some line ending\nanother line ending\nthis is the last one', [until_end_parser])
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = Parsing.parse_text('just some line ending\nanother line ending\nthis is the last one', [until_end_parser])
 
         self.assertEqual(expected, actual)
 
@@ -40,7 +38,6 @@ class GivenParserTest(unittest.TestCase):
 
         until_end_parser = UntilEndParser.UntilEndParser('ItsTheEndOfTheLine')
 
-        result = Parsing.parse_text('just some line ending\r\nanother line ending\r\nthis is the last one', [until_end_parser])
-        actual = test_utils.remove_eol_eof_column(result)
+        actual = Parsing.parse_text('just some line ending\r\nanother line ending\r\nthis is the last one', [until_end_parser])
 
         self.assertEqual(expected, actual)

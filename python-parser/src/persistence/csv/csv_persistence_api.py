@@ -4,8 +4,7 @@ import csv
 
 def save_parsing_result(filename, parsing_result):
     # Map parsing_result
-    result_without_newlines = __remove_eol_eof_column(parsing_result)
-    data_rows = __map_to_csv_data(result_without_newlines)
+    data_rows = __map_to_csv_data(parsing_result)
 
     # Call CSV writing module
     __save_as_csv(filename, data_rows)
