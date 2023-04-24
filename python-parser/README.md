@@ -10,7 +10,7 @@ and view the resulting `result.csv`.
 
 For a full example containing all parsers run
 ```
-python main.py --input-file sample-data/full-example.txt --output-file result.csv --parser-string 1 "IntroString" "Loglevel: " --parser-one-of 2 "Loglevel" "INFO,INCIDENT,ERROR" --parser-until-end "ItsTheEndOfTheLine"
+python main.py --input-file sample-data/full-example.txt --output-file result.csv --parser-string 1 "IntroString" "Loglevel: " --parser-one-of 2 "Loglevel" "INFO,INCIDENT,ERROR" --parser-length 3 "FourChars" 4 --parser-until-end "ItsTheEndOfTheLine"
 ```
 
 ### Running the tests

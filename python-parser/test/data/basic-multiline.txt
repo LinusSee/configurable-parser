@@ -1,2 +1,2 @@
-Loglevel: ERROR someLineEndToMatch
-Loglevel: INCIDENT another line end but with multiple words
+Loglevel: ERRORfour someLineEndToMatch
+Loglevel: INCIDENTwins another line end but with multiple words

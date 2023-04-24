@@ -1,6 +1,5 @@
 import unittest
 
-import test.test_utils as test_utils
 import src.business_logic.api.parsing as Parsing
 import src.business_logic.one_of_parser as OneOfParser
 

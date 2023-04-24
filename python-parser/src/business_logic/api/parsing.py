@@ -3,6 +3,7 @@ import parsec as parsec
 import src.business_logic.given_parser as GivenParser
 import src.business_logic.until_end_parser as UntilEndParser
 import src.business_logic.one_of_parser as OneOfParser
+import src.business_logic.match_for_parser as MatchForParser
 import src.business_logic.eol_parser as EolParser
 
 
@@ -36,6 +37,8 @@ def __parser_config_as_parser(parser_config):
             return UntilEndParser.match_end_of_line(parser_config.header)
         case 'OneOfParser':
             return OneOfParser.match_one_of(parser_config.target_values, parser_config.header)
+        case 'MatchForParser':
+            return MatchForParser.match_for(parser_config.count, parser_config.header)
 
     raise UnknownParserException(parser_config.parser_type)
 

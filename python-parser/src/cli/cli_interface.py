@@ -35,6 +35,12 @@ def __create_parser():
                                 For now this prevents commas to be part of a oneOf string.
                             ''')
 
+    parser.add_argument('--parser-length',
+                        nargs=3,
+                        action=_ParserLengthAction,
+                        metavar=('<parser-position>', '<header-name>', '<length>'),
+                        help='A number of chars to match and the header value for the result.')
+
     return parser
 
 
@@ -56,3 +62,28 @@ def __has_at_least_one_parser_configured(parsed_args):
         return True
 
     return False
+
+
+
+class _ParserLengthAction(argparse.Action):
+    def __call__(self, parser, namespace, values, option_string):
+        print('\n\n\n', values)
+        try:
+            values[2] = int(values[2])
+
+        except ValueError:
+            message = 'Third argument "length" must be an integer, but {values} could not be converted'.format(values)
+            raise argparse.ArgumentError(self, message)
+
+        
+        self.__append_values(namespace, values)
+
+
+    def __append_values(self, namespace, values):
+        existing_values = getattr(namespace, self.dest)
+
+        if existing_values is None:
+            existing_values = []
+
+        existing_values.append(values)
+        setattr(namespace, self.dest, existing_values)
